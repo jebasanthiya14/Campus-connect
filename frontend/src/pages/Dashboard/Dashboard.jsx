@@ -51,7 +51,7 @@ function Dashboard() {
 
       {/* Information Cards */}
 
-      <div className="grid md:grid-cols-3 gap-6 mt-8">
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
 
         {/* Upcoming Event */}
 
@@ -132,6 +132,35 @@ function Dashboard() {
             className="inline-block mt-5 bg-purple-600 text-white px-5 py-2 rounded-lg hover:bg-purple-700"
           >
             View Calendar
+          </Link>
+
+        </div>
+
+        {/* NEW STAFF FEEDBACK */}
+
+        <div className="bg-white rounded-xl shadow-md p-6">
+
+          <h2 className="text-xl font-bold mb-4">
+            👨‍🏫 Staff Feedback
+          </h2>
+
+          <p className="font-semibold">
+            Share your anonymous feedback
+          </p>
+
+          <p className="mt-2">
+            Help improve teaching quality.
+          </p>
+
+          <p>
+            Your identity will remain private.
+          </p>
+
+          <Link
+            to="/staff-feedback"
+            className="inline-block mt-5 bg-indigo-600 text-white px-5 py-2 rounded-lg hover:bg-indigo-700"
+          >
+            Give Feedback
           </Link>
 
         </div>

@@ -6,7 +6,7 @@ getEvents,
 
 addEvent,
 
-updateEvent,
+updateEvent,  
 
 deleteEvent,
 

@@ -37,6 +37,12 @@ function Navbar() {
           <Link to="/cgpa" className="hover:text-yellow-300">
             CGPA
           </Link>
+          <Link
+  to="/staff-feedback"
+  className="hover:text-yellow-300"
+>
+  Staff Feedback
+</Link>
 
           <button
             onClick={handleLogout}
