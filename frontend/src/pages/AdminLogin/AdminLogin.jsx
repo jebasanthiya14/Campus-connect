@@ -4,10 +4,11 @@ import { useNavigate, Link } from "react-router-dom";
 function AdminLogin() {
   const navigate = useNavigate();
 
-  const [form, setForm] = useState({
-    email: "",
-    password: "",
-  });
+const [form, setForm] = useState({
+  email: "",
+  password: "",
+  department: "",
+});
 
   const handleChange = (e) => {
     setForm({
@@ -41,9 +42,15 @@ function AdminLogin() {
       }
 
       localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data.user));
+localStorage.setItem("user", JSON.stringify(data.user));
 
-      navigate("/admin");
+const clubAdmins = ["YRC", "NSS", "NCC", "NSO"];
+
+if (clubAdmins.includes(form.department)) {
+  navigate("/club");
+} else {
+  navigate("/admin");
+}
 
     } catch (err) {
       console.log(err);
@@ -86,11 +93,40 @@ function AdminLogin() {
             required
           />
 
-          <button
-            className="w-full bg-red-600 text-white py-2 rounded-md hover:bg-red-700"
-          >
-            Login
-          </button>
+          <select
+  name="department"
+  value={form.department}
+  onChange={handleChange}
+  className="w-full border px-3 py-2 rounded-md mt-4"
+  required
+>
+  <option value="">Select Department / Club</option>
+
+  <optgroup label="Clubs">
+    <option value="YRC">YRC</option>
+    <option value="NSS">NSS</option>
+    <option value="NCC">NCC</option>
+    <option value="NSO">NSO</option>
+  </optgroup>
+
+  <optgroup label="Departments">
+    <option value="IT">IT</option>
+    <option value="CSE">CSE</option>
+    <option value="ECE">ECE</option>
+    <option value="EEE">EEE</option>
+    <option value="Mechanical">Mechanical</option>
+    <option value="Civil">Civil</option>
+  </optgroup>
+</select>
+
+<button
+  type="submit"
+  className="w-full bg-red-600 text-white py-2 rounded-md mt-4"
+>
+  Login
+</button>
+         
+
 
         </form>
 

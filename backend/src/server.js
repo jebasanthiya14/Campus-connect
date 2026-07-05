@@ -9,6 +9,7 @@ import authRoutes from "./routes/auth.routes.js";
 import reviewRoutes from "./routes/review.routes.js";
 import lostFoundRoutes from "./routes/lostfound.routes.js";
 
+import cgpaRoutes from "./routes/cgpa.routes.js";
 dotenv.config();
 
 const app = express();
@@ -36,3 +37,4 @@ app.get("/", (req, res) => {
 app.listen(5000, () => {
   console.log("Server running on port 5000");
 });
+app.use("/api/cgpa", cgpaRoutes);
