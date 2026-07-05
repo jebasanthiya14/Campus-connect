@@ -51,7 +51,7 @@ function Dashboard() {
 
       {/* Information Cards */}
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+      <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6 mt-8">
 
         {/* Upcoming Event */}
 
@@ -136,7 +136,7 @@ function Dashboard() {
 
         </div>
 
-        {/* NEW STAFF FEEDBACK */}
+        {/* Staff Feedback */}
 
         <div className="bg-white rounded-xl shadow-md p-6">
 
@@ -161,6 +161,31 @@ function Dashboard() {
             className="inline-block mt-5 bg-indigo-600 text-white px-5 py-2 rounded-lg hover:bg-indigo-700"
           >
             Give Feedback
+          </Link>
+
+        </div>
+
+        {/* Lost & Found */}
+
+        <div className="bg-white rounded-xl shadow-md p-6">
+
+          <h2 className="text-xl font-bold mb-4">
+            🔍 Lost & Found
+          </h2>
+
+          <p className="font-semibold">
+            Lost or Found an Item?
+          </p>
+
+          <p className="mt-2">
+            Upload found items or claim your belongings.
+          </p>
+
+          <Link
+            to="/lost-found"
+            className="inline-block mt-5 bg-red-600 text-white px-5 py-2 rounded-lg hover:bg-red-700"
+          >
+            Open
           </Link>
 
         </div>

@@ -29,6 +29,7 @@ function Navbar() {
           <Link to="/circulars" className="hover:text-yellow-300">
             Circulars
           </Link>
+          
 
           <Link to="/calendar" className="hover:text-yellow-300">
             Calendar
@@ -42,6 +43,12 @@ function Navbar() {
   className="hover:text-yellow-300"
 >
   Staff Feedback
+</Link>
+<Link
+  to="/lost-found"
+  className="hover:text-yellow-300"
+>
+  Lost & Found
 </Link>
 
           <button

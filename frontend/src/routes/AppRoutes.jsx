@@ -11,10 +11,15 @@ import Events from "../pages/Events/Events";
 import Circulars from "../pages/Circulars/Circulars";
 import Calendar from "../pages/Calendar/Calendar";
 import CGPA from "../pages/CGPA/CGPA";
+
 import RegisterEvent from "../pages/student/RegisterEvent";
 
-// NEW
 import StaffFeedback from "../pages/StaffFeedback/StaffFeedback";
+
+// NEW
+import LostFound from "../pages/LostFound/LostFound";
+import AddFoundItem from "../pages/LostFound/AddFoundItem";
+import ClaimItem from "../pages/LostFound/ClaimItem";
 
 function AppRoutes() {
   return (
@@ -29,12 +34,15 @@ function AppRoutes() {
         <Route path="/circulars" element={<Circulars />} />
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/cgpa" element={<CGPA />} />
-
-        {/* Event Registration */}
-        <Route path="/register/:id" element={<RegisterEvent />} />
-
-        {/* NEW Staff Feedback */}
         <Route path="/staff-feedback" element={<StaffFeedback />} />
+
+        {/* Lost & Found */}
+        <Route path="/lost-found" element={<LostFound />} />
+        <Route path="/add-found-item" element={<AddFoundItem />} />
+        <Route path="/claim-item/:id" element={<ClaimItem />} />
+
+        {/* Register Event */}
+        <Route path="/register/:id" element={<RegisterEvent />} />
 
         {/* Admin */}
         <Route path="/admin-login" element={<AdminLogin />} />
