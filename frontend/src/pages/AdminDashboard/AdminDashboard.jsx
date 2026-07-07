@@ -48,17 +48,20 @@ function AdminDashboard() {
               Update academic schedule
             </p>
           </Link>
-
-          {/* STUDENTS */}
           <Link
-            to="/admin/students"
-            className="bg-white shadow rounded-xl p-6 hover:shadow-xl transition"
-          >
-            <h2 className="text-xl font-bold">👥 Students</h2>
-            <p className="text-gray-600 mt-1">
-              View registered students
-            </p>
-          </Link>
+  to="/admin/registrations"
+  className="bg-white shadow rounded-xl p-6 hover:shadow-xl transition"
+>
+  <h2 className="text-xl font-bold">
+    📝 Event Registrations
+  </h2>
+
+  <p className="text-gray-600 mt-1">
+    View students registered for your events
+  </p>
+</Link>
+
+          
 
         </div>
       </div>

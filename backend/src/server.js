@@ -3,7 +3,8 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import path from "path";
-
+import registrationRoutes from "./routes/registration.routes.js";
+import adminAuthRoutes from "./routes/adminAuth.routes.js";
 import eventRoutes from "./routes/event.routes.js";
 import authRoutes from "./routes/auth.routes.js";
 import reviewRoutes from "./routes/review.routes.js";
@@ -24,9 +25,11 @@ app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 app.use("/api/auth", authRoutes);
 app.use("/api/events", eventRoutes);
 app.use("/api/reviews", reviewRoutes);
+app.use("/api/admin", adminAuthRoutes);
 
 // NEW Lost & Found Route
 app.use("/api/lostfound", lostFoundRoutes);
+app.use("/api/registrations", registrationRoutes);
 
 app.get("/", (req, res) => {
   res.json({

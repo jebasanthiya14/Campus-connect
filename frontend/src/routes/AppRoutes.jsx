@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import AdminRegister from "../pages/AdminRegister/AdminRegister";
 import AdminDashboard from "../pages/AdminDashboard/AdminDashboard";
 import AdminLogin from "../pages/AdminLogin/AdminLogin";
 import AdminEvents from "../pages/AdminEvents/AdminEvents";
@@ -23,6 +23,8 @@ import ClaimItem from "../pages/LostFound/ClaimItem";
 
 import ClubEvents from "../pages/Club/ClubEvents";
 import ClubDashboard from "../pages/club/ClubDashboard";
+import AdminRegistrations from "../pages/AdminRegistrations/AdminRegistrations";
+
 function AppRoutes() {
   return (
     <BrowserRouter>
@@ -37,7 +39,7 @@ function AppRoutes() {
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/cgpa" element={<CGPA />} />
         <Route path="/staff-feedback" element={<StaffFeedback />} />
-
+<Route path="/admin-register" element={<AdminRegister />} />
         {/* Lost & Found */}
         <Route path="/lost-found" element={<LostFound />} />
         <Route path="/add-found-item" element={<AddFoundItem />} />
@@ -50,10 +52,14 @@ function AppRoutes() {
         <Route path="/admin-login" element={<AdminLogin />} />
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/admin/events" element={<AdminEvents />} />
-
+<Route
+  path="/admin/registrations"
+  element={<AdminRegistrations />}
+/>
         <Route path="/club" element={<ClubDashboard />} />
 <Route path="/cgpa" element={<CGPA />} />
 <Route path="/club-events" element={<ClubEvents />} />
+
       </Routes>
     </BrowserRouter>
   );

@@ -33,9 +33,7 @@ export const addFoundItem = async (req, res) => {
       pickup_location,
     } = req.body;
 
-    const image = req.file
-      ? req.file.filename
-      : "";
+    const image = req.file ? req.file.filename : "";
 
     const result = await pool.query(
       `INSERT INTO found_items
@@ -45,11 +43,10 @@ export const addFoundItem = async (req, res) => {
         colour,
         category,
         description,
-        pickup_location
+        pickup_location,
+        status
       )
-
-      VALUES($1,$2,$3,$4,$5,$6)
-
+      VALUES($1,$2,$3,$4,$5,$6,'AVAILABLE')
       RETURNING *`,
       [
         image,
@@ -77,7 +74,7 @@ export const addFoundItem = async (req, res) => {
   }
 };
 
-// ================= GET ALL ITEMS =================
+// ================= GET AVAILABLE ITEMS =================
 
 export const getFoundItems = async (req, res) => {
 
@@ -85,11 +82,12 @@ export const getFoundItems = async (req, res) => {
 
     const result = await pool.query(
       `SELECT
-      id,
-      image,
-      category,
-      created_at
+        id,
+        image,
+        category,
+        created_at
       FROM found_items
+      WHERE status='AVAILABLE'
       ORDER BY created_at DESC`
     );
 
@@ -161,14 +159,21 @@ export const verifyItem = async (req, res) => {
 
     if (score >= 2) {
 
+      // Mark item as claimed
+      await pool.query(
+        "UPDATE found_items SET status='CLAIMED' WHERE id=$1",
+        [id]
+      );
+
       return res.json({
         success: true,
         pickup_location: item.pickup_location,
+        message: "Ownership verified successfully",
       });
 
     }
 
-    res.json({
+    return res.json({
       success: false,
       message: "Verification Failed",
     });

@@ -4,11 +4,10 @@ import { useNavigate, Link } from "react-router-dom";
 function AdminLogin() {
   const navigate = useNavigate();
 
-const [form, setForm] = useState({
-  email: "",
-  password: "",
-  department: "",
-});
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+  });
 
   const handleChange = (e) => {
     setForm({
@@ -21,12 +20,15 @@ const [form, setForm] = useState({
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:5000/api/auth/login", {
+      const res = await fetch("http://localhost:5000/api/admin/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          email: form.email,
+          password: form.password,
+        }),
       });
 
       const data = await res.json();
@@ -36,21 +38,19 @@ const [form, setForm] = useState({
         return;
       }
 
-      if (data.user.role !== "admin") {
-        alert("Access Denied! Admins only.");
-        return;
-      }
-
+      // Save admin details
       localStorage.setItem("token", data.token);
-localStorage.setItem("user", JSON.stringify(data.user));
+      localStorage.setItem("admin", JSON.stringify(data.admin));
 
-const clubAdmins = ["YRC", "NSS", "NCC", "NSO"];
+      // Club departments
+      const clubAdmins = ["NSS", "NCC", "NSO", "YRC"];
 
-if (clubAdmins.includes(form.department)) {
-  navigate("/club");
-} else {
-  navigate("/admin");
-}
+      // Redirect automatically based on department
+      if (clubAdmins.includes(data.admin.department)) {
+        navigate("/club");
+      } else {
+        navigate("/admin");
+      }
 
     } catch (err) {
       console.log(err);
@@ -93,48 +93,24 @@ if (clubAdmins.includes(form.department)) {
             required
           />
 
-          <select
-  name="department"
-  value={form.department}
-  onChange={handleChange}
-  className="w-full border px-3 py-2 rounded-md mt-4"
-  required
->
-  <option value="">Select Department / Club</option>
-
-  <optgroup label="Clubs">
-    <option value="YRC">YRC</option>
-    <option value="NSS">NSS</option>
-    <option value="NCC">NCC</option>
-    <option value="NSO">NSO</option>
-  </optgroup>
-
-  <optgroup label="Departments">
-    <option value="IT">IT</option>
-    <option value="CSE">CSE</option>
-    <option value="ECE">ECE</option>
-    <option value="EEE">EEE</option>
-    <option value="Mechanical">Mechanical</option>
-    <option value="Civil">Civil</option>
-  </optgroup>
-</select>
-
-<button
-  type="submit"
-  className="w-full bg-red-600 text-white py-2 rounded-md mt-4"
->
-  Login
-</button>
-         
-
+          <button
+            type="submit"
+            className="w-full bg-red-600 text-white py-2 rounded-md hover:bg-red-700"
+          >
+            Login
+          </button>
 
         </form>
 
-        <p className="text-center mt-5">
-          <Link
-            to="/"
-            className="text-blue-600"
-          >
+        <p className="text-center mt-4">
+          Don't have an admin account?{" "}
+          <Link to="/admin-register" className="text-blue-600 hover:underline">
+            Register
+          </Link>
+        </p>
+
+        <p className="text-center mt-3">
+          <Link to="/" className="text-blue-600 hover:underline">
             ← Back to Student Login
           </Link>
         </p>

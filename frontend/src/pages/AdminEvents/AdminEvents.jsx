@@ -1,10 +1,11 @@
 import { useState } from "react";
 
 function AdminEvents() {
+  const admin = JSON.parse(localStorage.getItem("admin"));
+
   const [event, setEvent] = useState({
     title: "",
     description: "",
-    department: "",
     location: "",
     event_date: "",
     registration_deadline: "",
@@ -26,7 +27,11 @@ function AdminEvents() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(event),
+        body: JSON.stringify({
+          ...event,
+          department: admin.department,
+          admin_department: admin.department,
+        }),
       });
 
       const data = await res.json();
@@ -41,7 +46,6 @@ function AdminEvents() {
       setEvent({
         title: "",
         description: "",
-        department: "",
         location: "",
         event_date: "",
         registration_deadline: "",
@@ -82,14 +86,11 @@ function AdminEvents() {
             required
           />
 
-          <input
-            name="department"
-            placeholder="Department"
-            value={event.department}
-            onChange={handleChange}
-            className="w-full border p-2 rounded"
-            required
-          />
+          {/* Department Display */}
+          <div className="bg-gray-100 border rounded p-3">
+            <span className="font-semibold">Department / Club :</span>{" "}
+            {admin.department}
+          </div>
 
           <input
             name="location"

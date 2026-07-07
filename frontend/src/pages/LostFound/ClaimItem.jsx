@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import MainLayout from "../../components/layout/MainLayout";
 
 function ClaimItem() {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [form, setForm] = useState({
     item_name: "",
@@ -56,49 +57,51 @@ function ClaimItem() {
           Claim Found Item
         </h1>
 
-        <form
-          onSubmit={handleVerify}
-          className="space-y-5"
-        >
-
-          <input
-            type="text"
-            name="item_name"
-            placeholder="Item Name"
-            value={form.item_name}
-            onChange={handleChange}
-            className="w-full border rounded p-3"
-            required
-          />
-
-          <input
-            type="text"
-            name="colour"
-            placeholder="Colour"
-            value={form.colour}
-            onChange={handleChange}
-            className="w-full border rounded p-3"
-            required
-          />
-
-          <textarea
-            rows="4"
-            name="description"
-            placeholder="Describe the item"
-            value={form.description}
-            onChange={handleChange}
-            className="w-full border rounded p-3"
-            required
-          />
-
-          <button
-            type="submit"
-            className="w-full bg-green-600 text-white py-3 rounded hover:bg-green-700"
+        {!result?.success && (
+          <form
+            onSubmit={handleVerify}
+            className="space-y-5"
           >
-            Verify Ownership
-          </button>
 
-        </form>
+            <input
+              type="text"
+              name="item_name"
+              placeholder="Item Name"
+              value={form.item_name}
+              onChange={handleChange}
+              className="w-full border rounded p-3"
+              required
+            />
+
+            <input
+              type="text"
+              name="colour"
+              placeholder="Colour"
+              value={form.colour}
+              onChange={handleChange}
+              className="w-full border rounded p-3"
+              required
+            />
+
+            <textarea
+              rows="4"
+              name="description"
+              placeholder="Describe the item"
+              value={form.description}
+              onChange={handleChange}
+              className="w-full border rounded p-3"
+              required
+            />
+
+            <button
+              type="submit"
+              className="w-full bg-green-600 text-white py-3 rounded hover:bg-green-700"
+            >
+              Verify Ownership
+            </button>
+
+          </form>
+        )}
 
         {result && (
 
@@ -112,13 +115,24 @@ function ClaimItem() {
                   ✅ Verification Successful
                 </h2>
 
-                <p className="mt-4">
-                  Pickup Location:
+                <p className="mt-4 text-lg">
+                  Pickup Location
                 </p>
 
-                <p className="font-bold text-lg">
-                  {result.pickup_location}
+                <p className="font-bold text-xl mt-2">
+                  📍 {result.pickup_location}
                 </p>
+
+                <p className="mt-5 text-gray-700">
+                  The item has been marked as <b>Claimed</b> and removed from the Lost & Found list.
+                </p>
+
+                <button
+                  onClick={() => navigate("/lost-found")}
+                  className="mt-6 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg"
+                >
+                  Back to Lost & Found
+                </button>
 
               </div>
 

@@ -20,37 +20,44 @@ export const getEvents = async (req, res) => {
 
 
 // ================= ADD EVENT =================
-
 export const addEvent = async (req, res) => {
   try {
 
-   const {
-  title,
-  description,
-  department,
-  club_name,
-  location,
-  event_date,
-  registration_deadline,
-} = req.body;
+    const {
+      title,
+      description,
+      department,
+      admin_department,
+      location,
+      event_date,
+      registration_deadline,
+    } = req.body;
 
-   const result = await pool.query(
-`INSERT INTO events
-(title,description,department,club_name,location,event_date,registration_deadline)
+    const result = await pool.query(
+      `INSERT INTO events
+      (
+        title,
+        description,
+        department,
+        admin_department,
+        location,
+        event_date,
+        registration_deadline
+      )
 
-VALUES($1,$2,$3,$4,$5,$6,$7)
+      VALUES($1,$2,$3,$4,$5,$6,$7)
 
-RETURNING *`,
-[
-title,
-description,
-department,
-club_name,
-location,
-event_date,
-registration_deadline
-]
-);
+      RETURNING *`,
+      [
+        title,
+        description,
+        department,
+        admin_department,
+        location,
+        event_date,
+        registration_deadline,
+      ]
+    );
 
     res.status(201).json(result.rows[0]);
 
@@ -62,7 +69,6 @@ registration_deadline
     });
   }
 };
-
 
 // ================= UPDATE EVENT =================
 
