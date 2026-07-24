@@ -24,6 +24,7 @@ import ClaimItem from "../pages/LostFound/ClaimItem";
 import ClubEvents from "../pages/Club/ClubEvents";
 import ClubDashboard from "../pages/club/ClubDashboard";
 import AdminRegistrations from "../pages/AdminRegistrations/AdminRegistrations";
+import AdminFeedback from "../pages/AdminFeedback/AdminFeedback";
 
 function AppRoutes() {
   return (
@@ -59,6 +60,10 @@ function AppRoutes() {
         <Route path="/club" element={<ClubDashboard />} />
 <Route path="/cgpa" element={<CGPA />} />
 <Route path="/club-events" element={<ClubEvents />} />
+<Route
+  path="/admin-feedback"
+  element={<AdminFeedback />}
+/>
 
       </Routes>
     </BrowserRouter>

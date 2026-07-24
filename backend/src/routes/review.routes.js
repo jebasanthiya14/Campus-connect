@@ -19,8 +19,7 @@ const router = express.Router();
 // Student
 
 router.post("/", addReview);
-
-router.get("/:facultyName", getFacultyReviews);
+router.get("/my-feedback/:adminId", getFacultyReviews);
 
 // Admin
 
