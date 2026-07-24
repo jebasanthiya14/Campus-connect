@@ -9,7 +9,8 @@ import eventRoutes from "./routes/event.routes.js";
 import authRoutes from "./routes/auth.routes.js";
 import reviewRoutes from "./routes/review.routes.js";
 import lostFoundRoutes from "./routes/lostfound.routes.js";
-
+import circularRoutes from "./routes/circular.routes.js";
+import calendarRoutes from "./routes/calendar.routes.js";
 import cgpaRoutes from "./routes/cgpa.routes.js";
 dotenv.config();
 
@@ -41,3 +42,6 @@ app.listen(5000, () => {
   console.log("Server running on port 5000");
 });
 app.use("/api/cgpa", cgpaRoutes);
+app.use("/api/circulars", circularRoutes);
+
+app.use("/api/calendar", calendarRoutes);
