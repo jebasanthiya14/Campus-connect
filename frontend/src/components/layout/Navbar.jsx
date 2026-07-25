@@ -35,21 +35,14 @@ function Navbar() {
             Calendar
           </Link>
 
-          <Link to="/cgpa" className="hover:text-yellow-300">
-            CGPA
-          </Link>
+          
           <Link
   to="/staff-feedback"
   className="hover:text-yellow-300"
 >
   Staff Feedback
 </Link>
-<Link
-  to="/lost-found"
-  className="hover:text-yellow-300"
->
-  Lost & Found
-</Link>
+
 
           <button
             onClick={handleLogout}

@@ -20,9 +20,11 @@ import StaffFeedback from "../pages/StaffFeedback/StaffFeedback";
 import LostFound from "../pages/LostFound/LostFound";
 import AddFoundItem from "../pages/LostFound/AddFoundItem";
 import ClaimItem from "../pages/LostFound/ClaimItem";
-
+import AdminCirculars from "../pages/Admincircular/AdminCirculars";
+import AdminCalendar from "../pages/Admincalendar/AdminCalendar";
 import ClubEvents from "../pages/Club/ClubEvents";
 import ClubDashboard from "../pages/club/ClubDashboard";
+import AdminReviews from "../pages/AdminReviews/AdminReviews";
 function AppRoutes() {
   return (
     <BrowserRouter>
@@ -50,9 +52,20 @@ function AppRoutes() {
         <Route path="/admin-login" element={<AdminLogin />} />
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/admin/events" element={<AdminEvents />} />
-
+<Route
+  path="/admin/circulars"
+  element={<AdminCirculars />}
+/>
         <Route path="/club" element={<ClubDashboard />} />
-<Route path="/cgpa" element={<CGPA />} />
+
+<Route
+  path="/admin/calendar"
+  element={<AdminCalendar />}
+/>
+<Route
+    path="/admin/reviews"
+    element={<AdminReviews />}
+/>
 <Route path="/club-events" element={<ClubEvents />} />
       </Routes>
     </BrowserRouter>

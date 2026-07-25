@@ -201,3 +201,26 @@ export const deleteReview = async (req, res) => {
   }
 
 };
+export const getAllReviews = async (req, res) => {
+
+  try {
+
+    const result = await pool.query(`
+      SELECT *
+      FROM staff_reviews
+      ORDER BY created_at DESC
+    `);
+
+    res.json(result.rows);
+
+  } catch (err) {
+
+    console.error(err);
+
+    res.status(500).json({
+      message: "Unable to fetch reviews"
+    });
+
+  }
+
+};
